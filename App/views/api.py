@@ -16,7 +16,5 @@ def search():
     return render_template('index.html', job=job)
   return render_template('index.html')
   
-  
-  
 
 

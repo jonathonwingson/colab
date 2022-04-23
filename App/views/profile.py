@@ -5,7 +5,7 @@ import json
 
 profile_views = Blueprint('profile_views', __name__, template_folder='../templates')
 
-@profile_views.route('/profile', methods=['GET'])
-def printTable():
-    jobs = Job.query.all()
-    return render_template('jobs.html', jobs = jobs)
+
+@profile_views.route('/profile')
+def profile():
+    return render_template('profile.html', name=current_user.name)
