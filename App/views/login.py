@@ -5,7 +5,8 @@ from flask_login import LoginManager, current_user, login_user, login_required
 from flask import Flask, request, render_template, redirect, flash, url_for
 from sqlalchemy.exc import IntegrityError
 
-from App.controllers import login_user, authenticate
+from App.controllers import authenticate
+from flask_login import login_user
 
 login_views = Blueprint('login_views', __name__, template_folder='../templates')
 
