@@ -10,4 +10,4 @@ logout_views = Blueprint('logout_views', __name__, template_folder='../templates
 def logout():
     logout_user()
     flash('User logged out')
-    return render_template('index.html',name=current_user.name)
+    return render_template('index.html')
