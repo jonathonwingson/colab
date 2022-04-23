@@ -28,6 +28,9 @@ def signup_post():
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     #new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-    new_user = create_user(username, password,email)
+    #new_user = create_user(username, password)
+    newuser = User(username=username, password=password, email=email)
+    db.session.add(newuser)
+    db.session.commit()
     flash('Sign UP sucessfully')
     return render_template('login.html')

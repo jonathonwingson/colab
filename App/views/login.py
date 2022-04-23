@@ -22,9 +22,9 @@ def login_post():
     remember = True if request.form.get('cbox') else False
 
     user = User.query.filter_by(username=username).first()
-    if not user and user.check_password(password):
-        flash('Please check your login details and try again.')
-        return render_template('login.html') # if the user doesn't exist or password is wrong, reload the page
+    if not user or not user.check_password(password):
+      flash('Please check your login details and try again.')
+      return render_template('login.html') # if the user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
     
