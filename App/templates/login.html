@@ -6,26 +6,30 @@
 
 {% block content %}
 
-<H1>LogIn</H1>
+<div class="column is-4 is-offset-4">
+  <h1 class="title">Login</h1>
+  <div class="box">
+      <form method="POST" action="/login">
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
+              </div>
+          </div>
 
-<div class="row">
-      
-  <form class="col s12 m8 offset-m2" method="POST" action="/login">
-      {{ form.csrf_token }}
-
-      <div class="input-field col s12 m8 offset-m2"> 
-        {{ form.username(size=20, class="validate") }}
-        {{ form.username.label }}
-      </div>
-
-      <div class="input-field col s12 m8 offset-m2">
-        {{ form.password(size=20, class="validate") }}
-        {{ form.password.label }}
-      </div>
-
-      <div class="input-field col s12 m8 offset-m2">
-        {{form.submit}}
-      </div> 
-  </form>
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="password" name="password" placeholder="Your Password">
+              </div>
+          </div>
+          <div class="field">
+            <label class="checkbox">
+                <input type="checkbox" name="remember">
+                Remember me
+            </label>
+            </div>
+          <button class="button is-block is-info is-large is-fullwidth">Login</button>
+      </form>
+  </div>
+</div>
 
 {% endblock %}

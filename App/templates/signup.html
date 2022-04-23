@@ -6,33 +6,32 @@
 
 {% block content %}
 
-<H1>SignUp</H1>
 
-<div class="row">
-    <div class="row">
-      <form id="myForm" class="col s12 m8 offset-m2" method="POST" action="/signup">
-          {{ form.csrf_token }}
-
-          <div class="input-field col s12 m8 offset-m2"> 
-            {{ form.username(size=20, class="validate") }}
-            {{ form.username.label }}
+<div class="column is-4 is-offset-4">
+  <h1 class="title">Sign Up</h1>
+  <div class="box">
+      <form method="POST" action="/signup">
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+              </div>
           </div>
 
-          <div class="input-field col s12 m8 offset-m2">
-            {{ form.password(size=20, class="validate") }}
-            {{ form.password.label }}
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="text" name="username" placeholder="Name" autofocus="">
+              </div>
           </div>
 
-          <div class="input-field col s12 m8 offset-m2">
-            {{ form.confirm(size=20, class="validate") }}
-            {{ form.confirm.label }}
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="password" name="password" placeholder="Password">
+              </div>
           </div>
 
-          <div class="input-field col s12 m8 offset-m2">
-            {{form.submit}}
-          </div> 
+          <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
       </form>
-    </div>
+  </div>
 </div>
 
 {% endblock %}

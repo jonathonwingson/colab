@@ -1,7 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory,flash
 from App.models import Job, db, User
 import json
-from form import SignUp
 from flask_login import LoginManager, current_user, login_user, login_required
 from flask import Flask, request, render_template, redirect, flash, url_for
 from sqlalchemy.exc import IntegrityError
@@ -12,16 +11,23 @@ signup_views = Blueprint('signup_views', __name__, template_folder='../templates
 
 @signup_views.route('/signup')
 def index():
-  form = SignUp()
-  return render_template('signup.html', form =form)
+  return render_template('signup.html')
 
 @signup_views.route('/signup', methods=['POST'])
-def signupAction():
-  form = SignUp() # create form object
-  if form.validate_on_submit():
-    data = request.form # get data from form submission
-    create_user( data['username'],data['password'])
-    flash('Account Created!')# send message
-    return render_template('login.html', form =form)# redirect to login page
-  flash('Error invalid input!')
-  return render_template('signup.html', form =form)
+def signup_post():
+
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+
+    if user: # if a user is found, we want to redirect back to signup page so user can try again
+        flash('Email used already')
+        return render_template('signup.html')
+
+    # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+    #new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    new_user = create_user(username, password,email)
+    flash('Sign UP sucessfully')
+    return render_template('login.html')
