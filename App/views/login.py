@@ -17,13 +17,12 @@ def index():
 @login_views.route('/login', methods=['POST'])
 def login_post():
     # login code goes here
-    email = request.form.get('email')
+    username = request.form.get('username')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
 
-    #user = User.query.filter_by(email=email).first()
-    user = authenticate(email,password)
-    if not user :
+    user = User.query.filter_by(username=username).first()
+    if not user and user.check_password(password):
         flash('Please check your login details and try again.')
         return render_template('login.html') # if the user doesn't exist or password is wrong, reload the page
 
