@@ -30,7 +30,7 @@ def login_post():
     # if the above check passes, then we know the user has the right credentials
     
     login_user(user, remember= remember)
-    flash('Welcome')
-    return render_template('jobs.html',  jobs = Job.query.all())
+    flash('LogIn Sucessful')
+    return render_template('profile.html', user=user)
 
   
